@@ -1,0 +1,20 @@
+# Python
+backend/venv/
+__pycache__/
+*.pyc
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Environnement
+.env
+
+# Fichiers temporaires
+uploads/
+exports/
+alignments/
+
+# IDE
+.vscode/
+.idea/
