@@ -2,102 +2,127 @@
 
 ## Présentation
 
-GenoScope est une plateforme web interactive de bioinformatique permettant :
+GenoScope est une application web de bio-informatique permettant de visualiser et d'analyser des données génomiques.
 
-- l’import de séquences FASTA,
-- l’alignement génomique,
-- la visualisation des mutations,
-- l’analyse de similarité,
-- la génération d’un arbre phylogénétique simplifié.
+Le projet répond à deux objectifs principaux :
 
-Le projet utilise :
+1. permettre à un utilisateur d'importer des séquences FASTA afin de générer un alignement, des statistiques et des visualisations ;
+2. permettre à un utilisateur d'importer plusieurs génomes annotés au format GenBank afin de visualiser leur organisation génomique avec pyGenomeViz.
 
-- FastAPI pour le backend,
-- React + Vite pour le frontend,
-- Plotly pour les visualisations,
-- Biopython pour les traitements bioinformatiques.
+L'application est composée :
+
+- d'un backend FastAPI chargé du traitement bioinformatique ;
+- d'un frontend React/Vite chargé de l'interface utilisateur ;
+- de visualisations interactives avec Plotly et pyGenomeViz ;
+- d'un système d'import de fichiers FASTA et GenBank.
 
 ---
 
-# Fonctionnalités
+## Fonctionnalités principales
 
-## Gestion des séquences FASTA
+### Module FASTA
 
-- Import multiple de fichiers FASTA
-- Détection ADN / ARN
+- Import de plusieurs fichiers FASTA
+- Détection du type de séquence
 - Calcul du taux GC
-- Analyse automatique des séquences
-
-## Alignement
-
 - Alignement rapide basé sur une séquence de référence
-- Visualisation verticale interactive
-- Détection des mutations
-- Affichage dynamique du nombre de positions
+- Visualisation verticale de l'alignement
+- Choix du nombre de positions affichées
+- Mise en évidence des mutations
+- Calcul de statistiques globales
+- Matrice de similarité avec Plotly
+- Arbre phylogénétique simplifié basé sur les distances
 
-## Analyses
+### Module GenBank
 
-- Matrice de similarité
-- Heatmap interactive Plotly
-- Statistiques génomiques
-- Pourcentage d’identité
-
-## Phylogénie
-
-- Génération d’un arbre phylogénétique simplifié
-- Distances évolutives relatives
+- Import de plusieurs fichiers GenBank : `.gb`, `.gbk`, `.genbank`
+- Visualisation de plusieurs génomes annotés avec pyGenomeViz
+- Affichage des régions annotées : CDS, gènes, peptides matures, autres annotations
+- Mode compact, mode détaillé et mode sans labels
+- Filtrage par type d'annotation
+- Filtrage par catégorie biologique
+- Affichage plein écran de la carte génomique
+- Tableau détaillé des annotations biologiques
+- Légende explicative des couleurs
+- Résumé des génomes importés
 
 ---
 
-# Technologies utilisées
+## Technologies utilisées
 
-## Frontend
+### Backend
+
+- Python
+- FastAPI
+- Biopython
+- pyGenomeViz
+- Matplotlib
+- NumPy
+- Pandas
+- Uvicorn
+
+### Frontend
 
 - React
 - Vite
 - TailwindCSS
 - Zustand
+- Axios
 - Plotly.js
 - Lucide React
 
-## Backend
-
-- FastAPI
-- Biopython
-- NumPy
-- Pandas
-
 ---
 
-# Structure du projet
+## Structure du projet
 
 ```txt
 GenoScope/
 ├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── services/
+│   │   └── utils/
+│   ├── requirements.txt
+│   └── README_BACKEND.md
+│
 ├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── router/
+│   │   ├── services/
+│   │   └── store/
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+│   └── README_FRONTEND.md
+│
 ├── exemples_fasta/
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-# Installation
+## Installation et lancement
 
-## Backend
+### 1. Lancer le backend
+
+Depuis la racine du projet :
 
 ```bash
 cd backend
-
 python -m venv venv
 ```
 
-### Windows
+Sous Windows :
 
 ```bash
 venv\Scripts\activate
 ```
 
-### Linux / Mac
+Sous Linux / Mac :
 
 ```bash
 source venv/bin/activate
@@ -109,13 +134,19 @@ Installer les dépendances :
 pip install -r requirements.txt
 ```
 
-Lancer le backend :
+Lancer l'API :
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-API disponible sur :
+L'API est disponible à l'adresse :
+
+```txt
+http://127.0.0.1:8000
+```
+
+La documentation Swagger est disponible à l'adresse :
 
 ```txt
 http://127.0.0.1:8000/docs
@@ -123,7 +154,9 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## Frontend
+### 2. Lancer le frontend
+
+Dans un second terminal, depuis la racine du projet :
 
 ```bash
 cd frontend
@@ -131,7 +164,7 @@ npm install
 npm run dev
 ```
 
-Application disponible sur :
+L'application est disponible à l'adresse :
 
 ```txt
 http://localhost:5173
@@ -139,28 +172,67 @@ http://localhost:5173
 
 ---
 
-# Utilisation
+## Utilisation
 
-1. Ouvrir la page Séquences
+### Analyse FASTA
+
+1. Aller dans la page **Séquences**
 2. Importer plusieurs fichiers FASTA
 3. Consulter :
-   - l’alignement,
-   - les statistiques,
-   - la matrice de similarité,
-   - l’arbre phylogénétique
+   - les séquences importées ;
+   - le visualiseur d'alignement ;
+   - les statistiques ;
+   - la matrice de similarité ;
+   - l'arbre phylogénétique simplifié.
+
+### Visualisation GenBank
+
+1. Aller dans la page **Visualisation GenBank**
+2. Importer plusieurs fichiers `.gb`, `.gbk` ou `.genbank`
+3. Utiliser les options de lisibilité :
+   - mode compact ;
+   - mode sans labels ;
+   - mode détaillé ;
+   - filtre par type ;
+   - filtre par catégorie.
+4. Consulter :
+   - la carte génomique pyGenomeViz ;
+   - le mode plein écran ;
+   - la légende ;
+   - le tableau des annotations.
 
 ---
 
-# Données de test
+## Données de test
 
-Des exemples FASTA SARS-CoV-2 sont fournis dans :
+Des fichiers FASTA d'exemple sont fournis dans le dossier :
 
 ```txt
 exemples_fasta/
 ```
 
+Pour tester le module GenBank, il est possible de télécharger des génomes complets au format GenBank depuis NCBI GenBank.
+
+Exemples de recherches possibles :
+
+```txt
+SARS-CoV-2 complete genome
+dengue virus complete genome
+human herpesvirus complete genome
+```
+
+Lors du téléchargement depuis NCBI, choisir le format **GenBank** et non FASTA.
+
 ---
 
-# Auteur
+## Remarques
+
+Le module FASTA travaille sur des séquences nucléotidiques brutes.
+
+Le module GenBank travaille sur des génomes annotés. Il ne compare pas les nucléotides un par un, mais affiche l'organisation des régions biologiques annotées dans les fichiers GenBank.
+
+---
+
+## Auteur
 
 Projet réalisé dans le cadre du cours de Bio-Informatique.

@@ -7,6 +7,7 @@ import WorkspacePage from "../pages/WorkspacePage";
 import AlignmentPage from "../pages/AlignmentPage";
 import AnalyticsPage from "../pages/AnalyticsPage";
 import PhylogenyPage from "../pages/PhylogenyPage";
+import GenbankViewerPage from "../pages/GenbankViewerPage";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/phylogeny",
         element: <PhylogenyPage />,
+      },
+      {
+        path: "/genbank",
+        element: <GenbankViewerPage />,
       },
     ],
   },

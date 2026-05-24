@@ -5,6 +5,7 @@ import {
   Upload,
   BarChart3,
   GitBranch,
+  FileCode2,
 } from "lucide-react";
 
 const links = [
@@ -32,6 +33,11 @@ const links = [
     to: "/phylogeny",
     label: "Phylogénie",
     icon: GitBranch,
+  },
+  {
+    to: "/genbank",
+    label: "Visualisation GenBank",
+    icon: FileCode2,
   },
 ];
 
